@@ -1,5 +1,6 @@
 import streamlit as st
 from Assets.Sidebar import show_sidebar
+from _Pages import Nations, Main
 
 
 st.set_page_config(page_title='F1 DataViz', page_icon=None, layout="wide", initial_sidebar_state="expanded", menu_items=None)
@@ -19,11 +20,12 @@ streamlit_style = """
 			"""
 st.markdown(streamlit_style, unsafe_allow_html=True)
 
-st.title('Formula One DataViz')
-st.markdown("""<div style="text-align: justify">Check out my Streamlit App-a-Thon project, which provides fascinating insights into the F1 World Championship. 
-The project offers a range of visualizations that display interesting information about the championship, such as the number of wins by each team, the position of drivers over time, and the 
-distribution of lap times. You can explore the data using various types of charts, including bar charts, line charts, scatter plots, and radar charts. With this project, you'll gain a deeper 
-understanding of the F1 World Championship and its history.</div>""", unsafe_allow_html=True)
+if 'page' not in st.session_state:
+    st.session_state['page'] = 'initial'
+    Main.render_page()
+elif st.session_state['page'] == 'nations':
+    Nations.render_page()
+
 
 show_sidebar()
 
