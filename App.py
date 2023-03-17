@@ -12,10 +12,7 @@ streamlit_style = """
 			font-family: 'Orbitron', sans-serif;
 			}
 
-            button {
-                font-family: 'Helvetica', sans-serif !important;
-                width: 100% !important;
-            }
+            
 			</style>
 			"""
 st.markdown(streamlit_style, unsafe_allow_html=True)
