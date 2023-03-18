@@ -1,5 +1,3 @@
-import plotly.graph_objects as go
-from plotly._subplots import make_subplots
 import pandas as pd
 
 def constructors_per_nation():
