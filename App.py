@@ -1,6 +1,6 @@
 import streamlit as st
 from Assets.Sidebar import show_sidebar
-from _Pages import Nations, Main
+from _Pages import Nations, Main, Seasons
 
 
 st.set_page_config(page_title='F1 DataViz', page_icon=None, layout="wide", initial_sidebar_state="expanded", menu_items=None)
@@ -22,6 +22,8 @@ if 'page' not in st.session_state:
     Main.render_page()
 elif st.session_state['page'] == 'nations':
     Nations.render_page()
+elif st.session_state['page'] == 'seasons':
+    Seasons.render_page()
 
 
 show_sidebar()
