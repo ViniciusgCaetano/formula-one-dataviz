@@ -1,6 +1,7 @@
 import streamlit as st
 from DataProcessing.nation_datasets import constructors_per_nation, drivers_per_nation
-import plotly.graph_objects as go
+from DataProcessing.champions import driver_champions_per_nation
+from Plots.nation_graphs import constructors_per_nation_graph, drivers_per_nation_graph
 
 
 
@@ -12,22 +13,44 @@ def render_page():
     col1, col2 = st.columns(2)
 
     col1.header('Teams By Nation')
-    df = constructors_per_nation()[:10]
-
-    constructor_figure = go.Figure(go.Bar(x=df['nationality'], y=df['Constructors'], showlegend=False))
-    constructor_figure.update_layout({"margin":{"t": 0}})
-
-    col1.plotly_chart(constructor_figure, use_container_width=True)
-
-    col1.table(constructors_per_nation()[:10])
+    col1.plotly_chart(constructors_per_nation_graph(), use_container_width=True)
 
     col2.header('Drivers By Nation')
-    df = drivers_per_nation()[:10]
-    drivers_figure = go.Figure(go.Bar(x=df['nationality'], y=df['Drivers'], showlegend=False))
-    drivers_figure.update_layout({"margin":{"t": 0}})
+    col2.plotly_chart(drivers_per_nation_graph(), use_container_width=True)
 
+    exp = st.expander(label="Analyse a country")
 
-    col2.plotly_chart(drivers_figure, use_container_width=True)
+    constructors_df = constructors_per_nation()
+    drivers_df = drivers_per_nation()
+    champions_per_nation_df = driver_champions_per_nation()
+
+    nationality = exp.selectbox('Choose a nationality', constructors_df['nationality'])
+    col1, col2, col3 = exp.columns(3)
+
+    try:
+        driver_count = drivers_df[drivers_df['nationality'] == nationality].Drivers
+    except TypeError:
+        driver_count = 0
+
+    try:
+        constructor_count = constructors_df[constructors_df['nationality'] == nationality].Constructors
+        int(constructor_count)
+    except TypeError:
+        constructor_count = 0
+
+    try:
+        champions_count = champions_per_nation_df[champions_per_nation_df['nationality'] == nationality].titles
+        int(champions_count)
+    except TypeError:
+        champions_count = 0
+
+    col1.metric('Drivers', driver_count)
+
+    col2.metric('Constructors', constructor_count)
+
+    col3.metric('Driver Titles', champions_count)
+  
+
 
 
 
