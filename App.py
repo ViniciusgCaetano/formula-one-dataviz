@@ -3,7 +3,7 @@ from Assets.Sidebar import show_sidebar
 from _Pages import Nations, Main, Seasons
 
 
-st.set_page_config(page_title='F1 DataViz', page_icon=None, layout="wide", initial_sidebar_state="expanded", menu_items=None)
+st.set_page_config(page_title='F1 DataViz', page_icon='🏎️', layout="wide", initial_sidebar_state="expanded", menu_items=None)
 streamlit_style = """
 			<style>
 			@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
