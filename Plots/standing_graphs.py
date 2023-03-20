@@ -18,7 +18,11 @@ def standing_graph(season):
 
     fig = px.line(standings_per_season, x="round", y="points", color="driver_name")
 
-    
+    fig.update_layout(title='Acumulated Points By Race',
+                    xaxis_title='Race',
+                    yaxis_title='Points',
+                    legend_title_text='Driver'
+                   )
 
     
     return fig
