@@ -8,6 +8,10 @@ def show_sidebar():
 
         st.image("https://raw.githubusercontent.com/ViniciusgCaetano/formula-one-dataviz/master/images/fonedataviz.png")
         st.title(" \n \n ")
+        if st.button('Home', use_container_width=True):
+            st.session_state['page'] = 'initial'
+            st.experimental_rerun()
+
         if st.button('Nations', use_container_width=True):
             st.session_state['page'] = 'nations'
             st.experimental_rerun()

@@ -20,6 +20,8 @@ st.markdown(streamlit_style, unsafe_allow_html=True)
 if 'page' not in st.session_state:
     st.session_state['page'] = 'initial'
     Main.render_page()
+elif st.session_state['page'] == 'initial':
+    Main.render_page()
 elif st.session_state['page'] == 'nations':
     Nations.render_page()
 elif st.session_state['page'] == 'seasons':
