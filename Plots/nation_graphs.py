@@ -1,6 +1,5 @@
 from DataProcessing.nation_datasets import constructors_per_nation, drivers_per_nation
 import plotly.graph_objects as go
-import plotly.express as px
 
 def constructors_per_nation_graph():
     df = constructors_per_nation()[:10]
