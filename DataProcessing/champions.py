@@ -27,7 +27,7 @@ def constructor_champions_per_year():
     constuctor_position = constructors.merge(constructor_standings,left_on='constructorId',right_on='constructorId',how = 'left')
     constuctor_position = constuctor_position.merge(races,on = 'raceId',how = 'left')
     # st.table(constuctor_position)
-    champions_df = constuctor_position.groupby(['nationality','year', 'name_x'])[['points','wins']].max().sort_values('points',ascending = False).reset_index()
+    champions_df = constuctor_position.groupby(['nationality','year', 'RealName'])[['points','wins']].max().sort_values('points',ascending = False).reset_index()
     # st.table(champions_df)
     champions_df.drop_duplicates(subset=['year'], inplace=True)
     champions_df = champions_df.sort_values(by="year")
